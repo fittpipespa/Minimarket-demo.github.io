@@ -20,9 +20,11 @@ header{
   justify-content:space-between;
 }
 
-.hero{
-  padding:80px;
-  text-align:center;
+.hero-text{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
 }
 
 .btn{
