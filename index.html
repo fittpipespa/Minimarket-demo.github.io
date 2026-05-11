@@ -1,155 +1,65 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MiniMarket Express</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">  <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-    body{background:#f5f7fb;color:#222;}
 
-    header{background:linear-gradient(135deg,#ff7a00,#ffb347);color:white;padding:20px 8%;position:sticky;top:0;z-index:1000;box-shadow:0 4px 10px rgba(0,0,0,0.1);}
-    .navbar{display:flex;justify-content:space-between;align-items:center;}
-    .logo{font-size:1.8rem;font-weight:700;}
-    .nav-links{display:flex;gap:20px;list-style:none;}
-    .nav-links a{text-decoration:none;color:white;font-weight:500;}
+  <link rel="stylesheet" href="style.css">
+</head>
 
-    .hero{display:flex;align-items:center;justify-content:space-between;padding:70px 8%;gap:40px;flex-wrap:wrap;}
-    .hero-text{flex:1;min-width:300px;}
-    .hero-text h1{font-size:3rem;margin-bottom:15px;color:#ff7a00;}
-    .hero-text p{font-size:1.1rem;margin-bottom:25px;color:#555;}
+<body>
 
-    .btn{display:inline-block;padding:14px 28px;background:#25d366;color:white;border-radius:12px;text-decoration:none;font-weight:600;}
-
-    .productos{padding:60px 8%;}
-    .section-title{text-align:center;font-size:2rem;margin-bottom:40px;color:#ff7a00;}
-    .grid-productos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px;}
-
-    .card{background:white;border-radius:20px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.08);}
-    .card img{width:100%;height:200px;object-fit:cover;}
-    .card-content{padding:15px;}
-    .precio{color:#ff7a00;font-weight:700;display:block;margin-bottom:10px;}
-
-    .card button{width:100%;padding:10px;border:none;border-radius:10px;background:#ff7a00;color:white;cursor:pointer;}
-
-    /* CARRITO */
-    .carrito{
-      position:fixed;
-      right:20px;
-      bottom:90px;
-      width:300px;
-      background:white;
-      box-shadow:0 10px 25px rgba(0,0,0,0.2);
-      border-radius:15px;
-      padding:15px;
-      z-index:2000;
-    }
-
-    .carrito h3{margin-bottom:10px;}
-    .item{display:flex;justify-content:space-between;margin-bottom:8px;font-size:14px;}
-    .item button{background:red;color:white;border:none;padding:3px 6px;border-radius:5px;cursor:pointer;}
-
-    .total{font-weight:700;margin-top:10px;}
-
-    .carrito-btn{
-      width:100%;margin-top:10px;padding:10px;
-      background:#25d366;color:white;border:none;border-radius:10px;
-      cursor:pointer;
-    }
-
-    .contador{
-      position:fixed;bottom:20px;right:20px;
-      background:#ff7a00;color:white;width:60px;height:60px;
-      border-radius:50%;display:flex;align-items:center;
-      justify-content:center;font-weight:700;
-      cursor:pointer;z-index:2000;
-    }
-
-  </style></head>
-<body><header>
-  <nav class="navbar">
+<header>
+  <div class="navbar">
     <div class="logo">MiniMarket</div>
     <ul class="nav-links">
       <li><a href="#productos">Productos</a></li>
     </ul>
-  </nav>
-</header><section class="hero">
+  </div>
+</header>
+
+<section class="hero">
   <div class="hero-text">
     <h1>MiniMarket Express</h1>
     <p>Compra fácil y rápido desde tu celular.</p>
     <a class="btn" href="https://wa.me/56912345678" target="_blank">WhatsApp</a>
   </div>
-</section><section class="productos" id="productos">
-  <h2 class="section-title">Productos</h2>  <div class="grid-productos"><div class="card">
-  <img src="https://images.unsplash.com/photo-1585238342024-78d387f4a707"/>
-  <div class="card-content">
-    <h3>Papas Fritas</h3>
-    <span class="precio">$1.490</span>
-    <button onclick="agregar('Papas Fritas',1490)">Agregar</button>
-  </div>
-</div>
+</section>
 
-<div class="card">
-  <img src="https://images.unsplash.com/photo-1629203851122-3726ecdf080e"/>
-  <div class="card-content">
-    <h3>Bebida</h3>
-    <span class="precio">$2.290</span>
-    <button onclick="agregar('Bebida',2290)">Agregar</button>
-  </div>
-</div>
+<section class="productos" id="productos">
+  <h2 class="section-title">Productos</h2>
+
+  <div class="grid-productos">
+
+    <div class="card">
+      <h3>Papas Fritas</h3>
+      <span class="precio">$1.490</span>
+      <button onclick="agregar('Papas Fritas',1490)">Agregar</button>
+    </div>
+
+    <div class="card">
+      <h3>Bebida</h3>
+      <span class="precio">$2.290</span>
+      <button onclick="agregar('Bebida',2290)">Agregar</button>
+    </div>
 
   </div>
-</section><!-- CARRITO --><div class="carrito" id="carrito" style="display:none;">
+</section>
+
+<!-- Carrito -->
+<div class="carrito" id="carrito" style="display:none;">
   <h3>🛒 Carrito</h3>
   <div id="items"></div>
   <div class="total" id="total">Total: $0</div>
-  <button class="carrito-btn" onclick="enviar()">Enviar pedido</button>
-</div><div class="contador" onclick="toggleCarrito()">
+  <button onclick="enviar()" class="carrito-btn">Enviar pedido</button>
+</div>
+
+<div class="contador" onclick="toggleCarrito()">
   🛒 <span id="count">0</span>
-</div><script>
-let carrito=[];
-let total=0;
+</div>
 
-function agregar(nombre,precio){
-  carrito.push({nombre,precio});
-  total+=precio;
-  actualizar();
-}
+<script src="script.js"></script>
 
-function eliminar(i){
-  total-=carrito[i].precio;
-  carrito.splice(i,1);
-  actualizar();
-}
-
-function actualizar(){
-  document.getElementById('count').innerText=carrito.length;
-  document.getElementById('total').innerText='Total: $'+total;
-
-  let html='';
-  carrito.forEach((p,i)=>{
-    html+=`<div class='item'>${p.nombre} $${p.precio} <button onclick='eliminar(${i})'>X</button></div>`;
-  });
-
-  document.getElementById('items').innerHTML=html;
-}
-
-function toggleCarrito(){
-  let c=document.getElementById('carrito');
-  c.style.display=c.style.display==='none'?'block':'none';
-}
-
-function enviar(){
-  if(carrito.length===0)return alert('Carrito vacío');
-
-  let msg='Hola quiero pedir:%0A';
-  carrito.forEach(p=>{
-    msg+=`- ${p.nombre} $${p.precio}%0A`;
-  });
-  msg+=`Total: $${total}`;
-
-  window.open('https://wa.me/56948713517?text='+msg,'_blank');
-}
-</script></body>
+</body>
 </html>
