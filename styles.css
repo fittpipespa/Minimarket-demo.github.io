@@ -128,3 +128,18 @@ footer{
   color:#888;
   font-size:14px;
 }
+.item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:10px;
+}
+.item button{
+  width:auto;
+  padding:4px 8px;
+  font-size:12px;
+  border-radius:6px;
+  margin-left:10px;
+  background:#ff3b3b;
+}
