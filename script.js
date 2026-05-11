@@ -1,7 +1,7 @@
 let carrito = [];
 let total = 0;
 
-function agregar(name, price){
+function Agregar(name, price){
 
   const productoExistente = cart.find(p => p.name === name);
 
