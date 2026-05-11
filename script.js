@@ -42,35 +42,17 @@ function eliminar(i){
   actualizar();
 }
 
-function actualizar(){
+function cambiarCantidad(i, valor){
 
-  document.getElementById('count').innerText =
-    carrito.reduce((acc,p)=>acc+p.cantidad,0);
+  let cantidad = parseInt(valor);
 
-  document.getElementById('total').innerText =
-    'Total: $' + total;
+  if(cantidad <= 0 || isNaN(cantidad)){
+    carrito.splice(i, 1);
+  } else {
+    carrito[i].cantidad = cantidad;
+  }
 
-  let html = '';
-
-  carrito.forEach((p,i)=>{
-
-    html += `
-      <div class="item">
-
-        <div>
-          ${p.nombre}<br>
-          x${p.cantidad} - $${p.precio * p.cantidad}
-        </div>
-
-        <button onclick="eliminar(${i})">
-          X
-        </button>
-
-      </div>
-    `;
-  });
-
-  document.getElementById('items').innerHTML = html;
+  actualizar();
 }
 
 function toggleCarrito(){
