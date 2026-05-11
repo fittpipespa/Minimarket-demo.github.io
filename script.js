@@ -1,12 +1,24 @@
 let carrito = [];
 let total = 0;
 
-function agregar(nombre, precio){
-  carrito.push({nombre, precio});
-  total += precio;
-  actualizar();
-}
+function add(name, price){
 
+  const productoExistente = cart.find(p => p.name === name);
+
+  if(productoExistente){
+    productoExistente.cantidad++;
+  } else {
+    cart.push({
+      name,
+      price,
+      cantidad:1
+    });
+  }
+
+  total += price;
+
+  update();
+}
 function eliminar(i){
   total -= carrito[i].precio;
   carrito.splice(i,1);
@@ -14,21 +26,34 @@ function eliminar(i){
 }
 
 function actualizar(){
-  document.getElementById("count").innerText = carrito.length;
-  document.getElementById("total").innerText = "Total: $" + total;
 
-  let html = "";
+  document.getElementById('count').innerText =
+    carrito.reduce((acc,p)=>acc+p.cantidad,0);
+
+  document.getElementById('total').innerText =
+    'Total: $' + total;
+
+  let html = '';
 
   carrito.forEach((p,i)=>{
+
     html += `
-      <div>
-        ${p.nombre} - $${p.precio}
-        <button onclick="eliminar(${i})">X</button>
+      <div class='item'>
+
+        <div>
+          ${p.nombre}<br>
+          x${p.cantidad} - $${p.precio * p.cantidad}
+        </div>
+
+        <button onclick='eliminarProducto(${i})'>
+          X
+        </button>
+
       </div>
     `;
   });
 
-  document.getElementById("items").innerHTML = html;
+  document.getElementById('items').innerHTML = html;
 }
 
 function toggleCarrito(){
