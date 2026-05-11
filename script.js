@@ -1,27 +1,44 @@
 let carrito = [];
 let total = 0;
 
-function Agregar(name, price){
+function agregar(nombre, precio){
 
-  const productoExistente = cart.find(p => p.name === name);
+  const productoExistente =
+    carrito.find(p => p.nombre === nombre);
 
   if(productoExistente){
+
     productoExistente.cantidad++;
+
   } else {
-    cart.push({
-      name,
-      price,
+
+    carrito.push({
+      nombre,
+      precio,
       cantidad:1
     });
+
   }
 
-  total += price;
+  total += precio;
 
-  update();
+  actualizar();
 }
+
 function eliminar(i){
+
   total -= carrito[i].precio;
-  carrito.splice(i,1);
+
+  if(carrito[i].cantidad > 1){
+
+    carrito[i].cantidad--;
+
+  } else {
+
+    carrito.splice(i,1);
+
+  }
+
   actualizar();
 }
 
@@ -38,14 +55,14 @@ function actualizar(){
   carrito.forEach((p,i)=>{
 
     html += `
-      <div class='item'>
+      <div class="item">
 
         <div>
           ${p.nombre}<br>
           x${p.cantidad} - $${p.precio * p.cantidad}
         </div>
 
-        <button onclick='eliminarProducto(${i})'>
+        <button onclick="eliminar(${i})">
           X
         </button>
 
@@ -57,18 +74,30 @@ function actualizar(){
 }
 
 function toggleCarrito(){
+
   let c = document.getElementById("carrito");
-  c.style.display = c.style.display === "none" ? "block" : "none";
+
+  c.style.display =
+    c.style.display === "none"
+    ? "block"
+    : "none";
 }
 
 function enviar(){
+
   let msg = "Hola quiero pedir:%0A";
 
   carrito.forEach(p=>{
-    msg += `- ${p.nombre} $${p.precio}%0A`;
+
+    msg +=
+      `- ${p.nombre} x${p.cantidad} = $${p.precio * p.cantidad}%0A`;
+
   });
 
   msg += "Total: $" + total;
 
-  window.open("https://wa.me/56948713517?text=" + msg, "_blank");
+  window.open(
+    "https://wa.me/56948713517?text=" + msg,
+    "_blank"
+  );
 }
