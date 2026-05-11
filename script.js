@@ -109,11 +109,11 @@ function enviar(){
   carrito.forEach(p=>{
 
     msg +=
-      `- ${p.nombre} x${p.cantidad} = $${p.precio * p.cantidad}%0A`;
+      `- ${p.nombre} x ${p.cantidad} = $${p.precio * p.cantidad}%0A`;
 
   });
 
-  msg += "Total: $" + total;
+  msg += "Total: $ " + total;
 
   window.open(
     "https://wa.me/56948713517?text=" + msg,
