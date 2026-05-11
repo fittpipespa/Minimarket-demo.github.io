@@ -41,6 +41,50 @@ function eliminar(i){
 
   actualizar();
 }
+function actualizar(){
+
+  document.getElementById('count').innerText =
+    carrito.reduce((acc,p)=>acc + p.cantidad, 0);
+
+  let totalCalculado = 0;
+  let html = '';
+
+  carrito.forEach((p, i) => {
+
+    let subtotal = p.precio * p.cantidad;
+    totalCalculado += subtotal;
+
+    html += `
+      <div class="item">
+
+        <div>
+          ${p.nombre}<br>
+          $${p.precio}
+        </div>
+
+        <input 
+          type="number" 
+          min="1" 
+          value="${p.cantidad}"
+          onchange="cambiarCantidad(${i}, this.value)"
+          style="width:60px; padding:5px;"
+        />
+
+        <button onclick="eliminar(${i})">
+          X
+        </button>
+
+      </div>
+    `;
+  });
+
+  total = totalCalculado;
+
+  document.getElementById('total').innerText =
+    'Total: $' + total;
+
+  document.getElementById('items').innerHTML = html;
+}
 
 function cambiarCantidad(i, valor){
 
