@@ -7,24 +7,17 @@ function agregar(nombre, precio){
     carrito.find(p => p.nombre === nombre);
 
   if(productoExistente){
-
     productoExistente.cantidad++;
-
   } else {
-
     carrito.push({
       nombre,
       precio,
-      cantidad:1
+      cantidad: 1
     });
-
   }
-
-  total += precio;
 
   actualizar();
 }
-
 function eliminar(i){
 
   total -= carrito[i].precio;
