@@ -70,5 +70,5 @@ function enviar(){
 
   msg += "Total: $" + total;
 
-  window.open("https://wa.me/56912345678?text=" + msg, "_blank");
+  window.open("https://wa.me/56948713517?text=" + msg, "_blank");
 }
