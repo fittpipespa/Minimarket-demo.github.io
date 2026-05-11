@@ -6,13 +6,10 @@
 }
 
 body{
-  padding-top:80px;
   background:#f5f7fb;
 }
 
 header{
-  position:fixed;
-  width:100%;
   background:#ff7a00;
   padding:15px;
   color:white;
@@ -24,7 +21,7 @@ header{
 }
 
 .hero{
-  padding:40px 20px 30px;
+  padding:80px;
   text-align:center;
 }
 
